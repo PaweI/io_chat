@@ -11,7 +11,13 @@ app.get('/', function(request, result) {
 });
 
 io.on('connection', function(socket){
-  console.log('Another meat connected');
+  console.log('Another goose connected');
+  socket.on('chat message', function(message){
+    console.log('message: ' + message);
+  });
+  socket.on('disconnect', function() {
+    console.log('They gone :-(')
+  });
 });
 
 server.listen(3000, function() {
