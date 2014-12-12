@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, result) {
@@ -12,11 +12,12 @@ app.get('/', function(request, result) {
 
 io.on('connection', function(socket){
   console.log('Another goose connected');
-  socket.on('chat message', function(message){
-    console.log('message: ' + message);
+  socket.on('chat message', function(message) {
+    io.emit('chat message', message);
+    // console.log('message: ' + message);
   });
   socket.on('disconnect', function() {
-    console.log('They gone :-(')
+    console.log('They gone :-(');
   });
 });
 
