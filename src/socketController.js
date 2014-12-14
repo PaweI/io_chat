@@ -13,7 +13,7 @@ var socket = function(io) {
 
     socket.on('chat message', function(message) {
       io.emit('chat message', message);
-      if(lastMessages.length > 12) {
+      if(lastMessages.length > 21) {
         lastMessages.shift();
         lastMessages.push(message)
       } else {
