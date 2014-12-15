@@ -9,8 +9,11 @@ $(document).ready(function() {
 
   var chat = function(username) {
 
-    socket.on('joined room', function (username) {
+    socket.on('joined room', function (username, connectedUsers) {
       $('#messages').append($('<li>').text(username + " walked in to the room"));
+      connectedUsers.forEach(function(user) {
+        $('#users').append($('<li>').text(user));
+      });
     });
 
     $('#messageInput').fadeIn();
@@ -34,6 +37,10 @@ $(document).ready(function() {
 
     socket.on('left room', function (username) {
       $('#messages').append($('<li>').text(username + " runned away from the room"));
+      $('users li').remove();
+      connectedUsers.forEach(function() {
+        $('#users').append($('<li>').text(user));
+      });
     });
 
   };
