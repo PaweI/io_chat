@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var socket = io();
+  var currentUser;
 
   socket.on('last messages', function(message) {
     $('#messages').append($('<li>').text(message));
@@ -7,6 +8,10 @@ $(document).ready(function() {
 
 
   var chat = function(username) {
+
+    socket.on('joined room', function (username) {
+      $('#messages').append($('<li>').text(username + " walked in to the room"));
+    });
 
     $('#messageInput').fadeIn();
 
@@ -16,18 +21,22 @@ $(document).ready(function() {
       return false;
     });
 
-    socket.on('chat message', function(message) {
-      $('#messages').append($('<li>').text(username + '=> ' + message));
-      $.when('#messages li:nth-child(20)').then(function() {
-        $('#messages li:nth-child(1)').remove();
-      });
+    socket.on('user send message', function(message) {
+      $('#messages').append($('<li>').text(currentUser + '===' + message));
+      // $.when('#messages li:nth-child(20)', function() {
+      //   $('#messages li:nth-child(1)').remove();
+      // });
+    });
+
+    socket.on('left room', function (username) {
+      $('#messages').append($('<li>').text(username + " runned away from the room"));
     });
 
   };
 
   $('#username').submit(function(event) {
     event.preventDefault();
-    var username = $('#name').val();
+    socket.emit('username', $('#name').val())
     $('#username').fadeOut();
     $('#messages').fadeIn();
     chat(username);

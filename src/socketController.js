@@ -1,31 +1,28 @@
-var socket = function(io) {
+var socket = function(io, session) {
 
-  var lastMessages = []
+  var connectedUsers = []
 
   io.on('connection', function(socket){
     console.log('Another goose connected'); 
-    if(lastMessages.length > 0) {
-      lastMessages.forEach(function(message) {
-        io.emit('last messages', message)
-        console.log(message)
-      });
-    };
+    socket.on('username', function(username) {
+      session.user = username
+      connectedUsers.push(session.user)
+      socket.emit('joined room', session.user)
+    });
+
+
 
     socket.on('chat message', function(message) {
-      io.emit('chat message', message);
-      if(lastMessages.length > 21) {
-        lastMessages.shift();
-        lastMessages.push(message)
-      } else {
-        lastMessages.push(message)
-      };
+      io.emit('user send message', message);
       // console.log('message: ' + message);
     });
     socket.on('disconnect', function() {
+      var index = connectedUsers.indexOf(session.user);
+      io.emit('left room', session.user);
       console.log('They gone :-(');
     });
   });
 
 };
 
-module.exports = socket
+module.exports = socket;

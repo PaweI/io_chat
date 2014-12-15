@@ -16,6 +16,23 @@ module.exports = function(grunt) {
       },
     },
 
+    jasmine_node: {
+      options: {
+        forceExit: true,
+      },
+      all: ['spec/']
+    },
+
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          quiet: false, // Optionally suppress output to standard out (defaults to false)
+        },
+        src: ['test/**/*.js']
+      },
+    },
+
     express: {
       options: {
         port: 3000,
@@ -42,6 +59,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-express-server');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-jasmine-node');
+
 
   grunt.registerTask('default', ['watch']);
 
