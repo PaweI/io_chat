@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var socket = io();
-  var currentUser;
+  var currentUser = "";
 
   socket.on('last messages', function(message) {
     $('#messages').append($('<li>').text(message));
@@ -21,8 +21,12 @@ $(document).ready(function() {
       return false;
     });
 
-    socket.on('user send message', function(user, message) {
-      $('#messages').append($('<li>').text(user + ' => ' + message));
+    socket.on('user send message', function(username, message) {
+      if(username === $('#name').val()) {
+        $('#messages').append($('<li>').text('You' + ' => ' + message));
+      } else {
+        $('#messages').append($('<li>').text(username + ' => ' + message));
+      };
       // $.when('#messages li:nth-child(20)', function() {
       //   $('#messages li:nth-child(1)').remove();
       // });

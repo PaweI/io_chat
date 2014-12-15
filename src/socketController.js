@@ -6,7 +6,7 @@ var socket = function(io, session) {
     console.log('Another goose connected'); 
     socket.on('username', function(username) {
 
-      connectedUsers.push(session.user)
+      connectedUsers.push(username)
       io.emit('joined room', username)
 
       socket.on('chat message', function(message) {
