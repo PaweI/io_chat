@@ -21,8 +21,8 @@ $(document).ready(function() {
       return false;
     });
 
-    socket.on('user send message', function(message) {
-      $('#messages').append($('<li>').text(currentUser + '===' + message));
+    socket.on('user send message', function(user, message) {
+      $('#messages').append($('<li>').text(user + ' => ' + message));
       // $.when('#messages li:nth-child(20)', function() {
       //   $('#messages li:nth-child(1)').remove();
       // });
