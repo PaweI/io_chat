@@ -29,23 +29,92 @@ body {
 }
 #messages { 
   list-style-type: none; 
-  margin: 0; 
-  padding: 0; 
+  margin: 20px; 
+  margin-right: 35%; 
+  padding: 5px; 
   display: none;
+
 }
 #messages li { 
   padding: 5px 10px; 
 }
 #messages li:nth-child(odd) { 
-  background: #eee; 
+  background: #889AC0;
+  color: white; 
 }
 #logo {
   text-align: center;
   color: red;
 }
+
+#username {
+  margin-top: 20%;
+  margin-left: 30%;
+}
+
+#name {
+  text-align: center;
+  width: 30%;
+  border: 2px solid #123582;
+  padding: 10px;
+  margin-right: 2%;
+  margin-bottom: 2%
+}
+
+h3 {
+  display: inline;
+}
+
+@-webkit-keyframes pulsate
+{
+  0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
+  50%  { color: #fff; text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+  100% { color: #ddd; text-shadow: 0 -1px 0 #000; }
+}
+    
+@keyframes pulsate
+{
+  0%   { color: #ddd; text-shadow: 0 -1px 0 #000; }
+  50%  { color: #fff; text-shadow: 0 -1px 0 #444, 0 0 5px #ffd, 0 0 8px #fff; }
+  100% { color: #ddd; text-shadow: 0 -1px 0 #000; }
+}
+
+#sendNameButton:hover, #sendNameButton:focus {
+  -webkit-animation: pulsate 1.2s linear infinite;
+  animation: pulsate 1.2s linear infinite;
+}
+
+#sendNameButton {
+  width: 135px;
+  padding: 10px; 
+  background: #889AC0;
+  color: white;
+  border-radius: 50px;
+  opacity: 0.4;
+  box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+  -webkit-transition: all 100ms ease;
+  transition: all 150ms ease;
+}
+
+#sendNameButton:hover {
+  opacity: 1
+}
+
+#sendNameButton:active {
+  box-shadow: 0 1px 0 #666, 0 2px 0 #444, 0 2px 2px rgba(0,0,0,0.9);
+  transform: translateY(3px);
+  -webkit-animation: none;
+  animation: none;
+}
+
+#sendNameButton:focus {
+  outline: 0;
+}
+
 #users {
   top: 0;
   border: 1px solid green ;
   float: right;
   margin: 20px;
 }
+

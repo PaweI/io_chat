@@ -1,6 +1,10 @@
 $(document).ready(function() {
   var socket = io();
 
+  // $('#sendNameButton').hover(function() {
+  //     $(this).fadeOut(500);
+  //   });
+
   var chat = function(username) {
 
     socket.on('joined room', function (username, connectedUsers) {
