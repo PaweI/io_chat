@@ -49,6 +49,7 @@ $(document).ready(function() {
     socket.emit('username', $('#name').val())
     $('#username').fadeOut();
     $('#messages').fadeIn();
+    $('#users').fadeIn();
     chat(username);
   });
 });

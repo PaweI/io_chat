@@ -4,6 +4,7 @@
   box-sizing: border-box; 
 }
 body { 
+  background-color: lightblue;
   font: 13px Helvetica, Arial; 
 }
 #messageInput  { 
@@ -29,11 +30,14 @@ body {
 }
 #messages { 
   list-style-type: none; 
+  height: 70%;
+  width: 70%;
   margin: 20px; 
-  margin-right: 35%; 
+  margin-bottom: 5%;
   padding: 5px; 
   display: none;
-
+  border-right: 1px solid grey;
+  overflow: scroll;
 }
 #messages li { 
   padding: 5px 10px; 
@@ -54,11 +58,12 @@ body {
 
 #name {
   text-align: center;
-  width: 30%;
+  width: 40%;
   border: 2px solid #123582;
   padding: 10px;
   margin-right: 2%;
-  margin-bottom: 2%
+  margin-bottom: 2%;
+  outline: 0;
 }
 
 h3 {
@@ -112,9 +117,30 @@ h3 {
 }
 
 #users {
-  top: 0;
-  border: 1px solid green ;
-  float: right;
-  margin: 20px;
+  font: 13px Helvetica, Arial;
+  font-style: italic;
+  display: none;
+  position: fixed;
+  padding: 25px;
+  width: 600px;
+  height: 80%;
+  left: 100%;
+  top: 10%;
+  margin-left: -300px;
+  list-style-type: none; 
+  overflow: scroll;
+  border: solid 1px black;
+  border-radius: 10px;
 }
+#users li:nth-child(odd){
+  color: red;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+#users li:nth-child(even){
+  color: blue;
+  font-family: 'Lucida Bright', Georgia, serif;
+  font-size: 18px;
+}
+
 
