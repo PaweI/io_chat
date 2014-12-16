@@ -1,16 +1,11 @@
 $(document).ready(function() {
   var socket = io();
-  var currentUser = "";
-
-  socket.on('last messages', function(message) {
-    $('#messages').append($('<li>').text(message));
-  });
-
 
   var chat = function(username) {
 
     socket.on('joined room', function (username, connectedUsers) {
       $('#messages').append($('<li>').text(username + " walked in to the room"));
+      $('#users li').remove();
       connectedUsers.forEach(function(user) {
         $('#users').append($('<li>').text(user));
       });
@@ -35,10 +30,10 @@ $(document).ready(function() {
       // });
     });
 
-    socket.on('left room', function (username) {
+    socket.on('left room', function (username, connectedUsers) {
       $('#messages').append($('<li>').text(username + " runned away from the room"));
-      $('users li').remove();
-      connectedUsers.forEach(function() {
+      $('#users li').remove();
+      connectedUsers.forEach(function(user) {
         $('#users').append($('<li>').text(user));
       });
     });

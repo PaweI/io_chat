@@ -3,23 +3,24 @@ var socket = function(io, session) {
   var connectedUsers = []
 
   io.on('connection', function(socket){
-    console.log('Another goose connected'); 
+    console.log('Another goose connected');
+
     socket.on('username', function(username) {
-      session.user = username
-      connectedUsers.push(session.user)
-      socket.emit('joined room', session.user)
-    });
+      connectedUsers.push(username)
+      io.emit('joined room', username, connectedUsers)
 
 
 
-    socket.on('chat message', function(message) {
-      io.emit('user send message', session.user, message);
-      // console.log('message: ' + message);
-    });
-    socket.on('disconnect', function() {
-      var index = connectedUsers.indexOf(session.user);
-      io.emit('left room', session.user);
-      console.log('They gone :-(');
+      socket.on('chat message', function(message) {
+      io.emit('user send message', username, message);
+      });
+
+      socket.on('disconnect', function() {
+        var index = connectedUsers.indexOf(username);
+        connectedUsers.splice(index, 1);
+        io.emit('left room', username, connectedUsers);
+        console.log('They gone :-(');
+      });
     });
   });
 
