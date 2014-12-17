@@ -1,10 +1,6 @@
 $(document).ready(function() {
   var socket = io();
 
-  // $('#sendNameButton').hover(function() {
-  //     $(this).fadeOut(500);
-  //   });
-
   var chat = function(username) {
 
     socket.on('joined room', function (username, connectedUsers) {
@@ -29,9 +25,6 @@ $(document).ready(function() {
       } else {
         $('#messages').append($('<li>').text(username + ' => ' + message));
       };
-      // $.when('#messages li:nth-child(20)', function() {
-      //   $('#messages li:nth-child(1)').remove();
-      // });
     });
 
     socket.on('left room', function (username, connectedUsers) {

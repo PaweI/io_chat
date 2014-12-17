@@ -1,6 +1,7 @@
 var socket = function(io, session) {
 
   var connectedUsers = []
+  var lastMessages = {}
 
   io.on('connection', function(socket){
     console.log('Another goose connected');
@@ -9,10 +10,10 @@ var socket = function(io, session) {
       connectedUsers.push(username)
       io.emit('joined room', username, connectedUsers)
 
-
-
       socket.on('chat message', function(message) {
-      io.emit('user send message', username, message);
+        lastMessages.username = message
+        console.log(username + message)
+        io.emit('user send message', username, message);
       });
 
       socket.on('disconnect', function() {
