@@ -12,7 +12,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
-}))
+}));
 
 app.get('/', function(request, result) {
   result.render('index');

@@ -24,7 +24,7 @@ $(document).ready(function() {
         $('#messages').append($('<li>').text('You' + ' => ' + message));
       } else {
         $('#messages').append($('<li>').text(username + ' => ' + message));
-      };
+      }
     });
 
     socket.on('left room', function (username, connectedUsers) {
@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   $('#username').submit(function(event) {
     event.preventDefault();
-    socket.emit('username', $('#name').val())
+    socket.emit('username', $('#name').val());
     $('#username').fadeOut();
     $('#messages').fadeIn();
     $('#users').fadeIn();
